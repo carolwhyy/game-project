@@ -23,11 +23,43 @@ def do_logic(x, y):
    elif (x > 3 or x < 0):
       quit()  
 
+def add_to_render(map_grid,symbol, pos_x, pos_y):
+   temp_grid = map_grid
+   temp_grid[pos_x][pos_y] = symbol
+
+   return temp_grid
+
+def render (mapI):
+
+   ix = 0
+   iy = 0
+
+   for i in mapI:
+      for j in i:
+         print("|" + str(j) + "|", end='')
+      print("\n")
+
+   temp_map = mapI
+   for i in mapI:
+      for j in i:
+         temp_map[ix][iy] = mapI[iy][ix]
+         iy += 1
+      iy = 0
+      ix += 1
+
+   for i in temp_map:
+      for j in i:
+         print("|" + str(j) + "|", end='')
+      print("\n")
+
 def main():
    player_position_x = 0
    player_position_y = 0
+   player_symbol     = "&"
 
    while(1):
+      
+      map_grid = [["","",""],["","",""],["","",""]]
       # Do the game
       # Check Changes in Game
       (x,y) = get_input()
@@ -38,6 +70,7 @@ def main():
       print ("Player Position is currently: [" + str(player_position_x) + "," + str(player_position_y) + "]")
 
       # Render Output
-      #render ()
+      map_grid = add_to_render (map_grid,player_symbol, player_position_x, player_position_y)
+      render(map_grid)
 
 main()
