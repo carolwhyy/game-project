@@ -31,21 +31,18 @@ def add_to_render(map_grid,symbol, pos_x, pos_y):
 
 def render (mapI):
 
+   temp_map = [[" "," "," "],[" "," "," "],[" "," "," "]]
+
+
+
    ix = 0
    iy = 0
-
    for i in mapI:
       for j in i:
-         print("|" + str(j) + "|", end='')
-      print("\n")
-
-   temp_map = mapI
-   for i in mapI:
-      for j in i:
-         temp_map[ix][iy] = mapI[iy][ix]
+         temp_map[iy][ix] = mapI[ix][iy]
          iy += 1
-      iy = 0
       ix += 1
+      iy = 0
 
    for i in temp_map:
       for j in i:
@@ -53,13 +50,13 @@ def render (mapI):
       print("\n")
 
 def main():
-   player_position_x = 0
-   player_position_y = 0
+   player_position_x = 1
+   player_position_y = 1
    player_symbol     = "&"
 
    while(1):
       
-      map_grid = [["","",""],["","",""],["","",""]]
+      map_grid = [[" "," "," "],[" "," "," "],[" "," "," "]]
       # Do the game
       # Check Changes in Game
       (x,y) = get_input()
