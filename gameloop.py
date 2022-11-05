@@ -1,3 +1,15 @@
+import copy
+empty_map =   [[" "," "," "," "," "," "," "," "," "],
+               [" "," "," "," "," "," "," "," "," "],
+               [" "," "," "," "," "," "," "," "," "],
+               [" "," "," "," "," "," "," "," "," "],
+               [" "," "," "," "," "," "," "," "," "],
+               [" "," "," "," "," "," "," "," "," "],
+               [" "," "," "," "," "," "," "," "," "],
+               [" "," "," "," "," "," "," "," "," "],
+               [" "," "," "," "," "," "," "," "," "]]
+
+
 def get_input():
    # Ask the player to type a letter
    # We will read that letter
@@ -7,9 +19,9 @@ def get_input():
    letter_input = input("Enter a letter: ")
    print("Letter: " + letter_input)
    if (letter_input == "w"):
-      y += 1
+      y += -1
    elif (letter_input == "s"):
-      y += -1  
+      y += +1  
    elif (letter_input == "a"):
       x += -1 
    elif (letter_input == "d"):
@@ -18,9 +30,9 @@ def get_input():
    return (x,y)
 
 def do_logic(x, y):
-   if (y > 3 or y < 0):
+   if (y > 9 or y < 0):
       quit()
-   elif (x > 3 or x < 0):
+   elif (x > 9 or x < 0):
       quit()  
 
 def add_to_render(map_grid,symbol, pos_x, pos_y):
@@ -31,23 +43,7 @@ def add_to_render(map_grid,symbol, pos_x, pos_y):
 
 def render (mapI):
 
-   temp_map = [[" "," "," "],[" "," "," "],[" "," "," "]]
-
-
-
-   ix = 0
-   iy = 0
-   for i in mapI:
-      for j in i:
-         temp_map[iy][ix] = mapI[ix][iy]
-         iy += 1
-      ix += 1
-      iy = 0
-
-   for i in temp_map:
-      for j in i:
-         print("|" + str(j) + "|", end='')
-      print("\n")
+   print(mapI)
 
 def main():
    player_position_x = 1
@@ -56,7 +52,7 @@ def main():
 
    while(1):
       
-      map_grid = [[" "," "," "],[" "," "," "],[" "," "," "]]
+      map_grid = copy.deepcopy(empty_map)
       # Do the game
       # Check Changes in Game
       (x,y) = get_input()
